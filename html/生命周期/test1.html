@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调形式Ref</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+    class Demo extends React.Component {
+        state = {isOK: true, opacity: 0.5}
+        showData = () => {
+            console.log(this)
+            const {id1} = this
+            alert(id1.value)
+        }
+
+        change = () => {
+            const {isOK} = this.state;
+            this.setState({isOK: !isOK})
+        }
+
+        saveInput = (c) => {
+            this.id1 = c
+        }
+
+        unmount = () => {
+            ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+        }
+
+        componentDidMount() {
+            this.timer = setInterval(() => {
+                let {opacity} = this.state
+                opacity -= 0.1
+                if (opacity <= 0)
+                    opacity = 1;
+                this.setState({opacity})
+            }, 200);
+        }
+
+        componentWillUnmount() {
+            clearInterval(this.timer)
+        }
+
+        stop() {
+            clearInterval(this.timer);
+            this.setState({opacity: 1})
+        }
+
+        render() {
+            const {isOK} = this.state;
+            return (
+                <div>
+                    <h2 style={{opacity: this.state.opacity}}>change test {isOK ? 'OK' : 'no ok'}</h2>
+                    {/*<input ref={c => this.id1 = c} type="text" placeholder="here"/>*/}
+                    <input ref={this.saveInput} type="text" placeholder="here"/>
+                    <button onClick={this.showData}>点啊</button>
+                    <br/>
+                    <button onClick={this.unmount}>卸载</button>
+                    <br/>
+                    <button onClick={this.stop}>stop</button>
+                </div>
+            );
+        }
+
+
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+</script>
+</body>
+</html>
