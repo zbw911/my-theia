@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回调形式Ref</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+    class Demo extends React.Component {
+        myref = React.createRef()
+        myref2 = React.createRef()
+
+        showData = () => {
+            alert(this.myref.current.value)
+        }
+
+        showData2 = (event) => {
+            alert(event.target.value)
+        }
+
+
+        render() {
+
+            return (
+                <div>
+
+                    <input ref={this.myref} type="text" placeholder="here"/>
+                    <br/>
+                    <button onClick={this.showData}>点啊</button>
+                    <br/>
+
+                    <input type="text" onBlur={this.showData2} placeholder="here"/>
+                </div>
+            );
+        }
+
+
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+</script>
+</body>
+</html>

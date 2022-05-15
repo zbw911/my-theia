@@ -1,19 +1,15 @@
 {
   "private": true,
   "dependencies": {
-    "@theia/callhierarchy": "next",
-    "@theia/file-search": "next",
-    "@theia/git": "next",
-    "@theia/markers": "next",
-    "@theia/messages": "next",
-    "@theia/navigator": "next",
-    "@theia/outline-view": "next",
-    "@theia/plugin-ext-vscode": "next",
-    "@theia/preferences": "next",
-    "@theia/preview": "next",
-    "@theia/search-in-workspace": "next",
-    "@theia/terminal": "next",
-    "@theia/vsx-registry": "next"
+    "@theia/core": "1.25.0",
+    "@theia/file-search": "1.25.0",
+    "@theia/filesystem": "1.25.0",
+    "@theia/monaco-editor-core": "1.65.2",
+    "@theia/output": "1.25.0",
+    "@theia/search-in-workspace": "1.25.0",
+    "@theia/toolbar": "1.25.0",
+    "@theia/vsx-registry": "1.25.0",
+    "@theia/workspace": "1.25.0"
   },
   "devDependencies": {
     "@theia/cli": "next"
@@ -27,8 +23,9 @@
   },
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "vscode-builtin-extensions-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix"
+
   },
+
   "theiaPluginsExcludeIds": [
     "vscode.extension-editing",
     "vscode.git",

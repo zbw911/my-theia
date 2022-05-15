@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串类型的Ref</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- development version -->
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+</head>
+<body>
+<div id="test"></div>
+<script type="text/babel">
+    class Demo extends React.Component {
+        showData = () => {
+            console.log(this)
+            const {id1} = this.refs
+            alert(id1.value)
+        }
+
+        showData2 = () => {
+            const {id2} = this.refs
+            alert(id2.value)
+        }
+
+        render() {
+            return (
+
+                <div>
+                    <input ref="id1" type="text" placeholder="here"/>
+                    <button onClick={this.showData}>点啊</button>
+
+                    <br/>
+                    <input ref="id2" type="text" onBlur={this.showData2} placeholder="here"/>
+                </div>
+            );
+        }
+
+
+    }
+
+    ReactDOM.render(<Demo/>, document.getElementById("test"))
+</script>
+</body>
+</html>
